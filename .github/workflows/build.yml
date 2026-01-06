@@ -19,15 +19,15 @@ jobs:
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
+    # - name: Setup tmate session
+      # uses: mxschmitt/action-tmate@v3
         # 建议加上条件判断，比如只有手动触发时才开启
-      if: ${{ github.event_name == 'workflow_dispatch' }}
+      # if: ${{ github.event_name == 'workflow_dispatch' }}
     - name: Download package
       run: make download -j$(nproc)
     - name: Compile the firmware
       run: |
-        make -j$(nproc) || make -j1 V=s
+        make -j$(nproc)
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
