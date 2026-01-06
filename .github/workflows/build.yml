@@ -1,0 +1,33 @@
+name: build
+
+on:
+  workflow_dispatch: # 添加这一行即可开启手动触发
+    inputs:
+      ssh:
+        description: '是否在编译失败时开启 SSH 调试'
+        required: false
+        default: 'true'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Update & Install feeds
+      run: |
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+    - name: make menuconfig
+      run: make menuconfig
+    - name: Download package
+      run: make download -j$(nproc)
+    - name: Compile the firmware
+      run: |
+        make -j$(nproc) || make -j1 V=s
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ImmortalWrt_firmware
+        path: openwrt/bin/targets/
