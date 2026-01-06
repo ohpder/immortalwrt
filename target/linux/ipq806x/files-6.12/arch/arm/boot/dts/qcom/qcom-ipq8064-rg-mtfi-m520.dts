@@ -60,15 +60,6 @@
 			bias-pull-up;
 		};
 	};
-	/* --- USB VBUS GPIO 设置 --- */
-	usb_vbus_pins: usb_vbus {
-		mux {
-			pins = "gpio54";
-			function = "gpio";
-			drive-strength = <2>;
-			bias-pull-up;
-		};
-	};
 
 	mdio0_pins: mdio0-state {
 		/delete-property/ pins;
@@ -282,12 +273,10 @@
 
 &usb3_0 {
 	status = "okay";
-	vbus-supply-gpio = <54 GPIO_ACTIVE_HIGH>;
 };
 
 &usb3_1 {
 	status = "okay";
-	vbus-supply-gpio = <54 GPIO_ACTIVE_HIGH>;
 };
 
 &pcie0 {
