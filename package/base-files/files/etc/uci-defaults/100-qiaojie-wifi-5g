@@ -1,0 +1,17 @@
+uci del firewall.cfg02dc81.network
+uci add_list firewall.cfg02dc81.network='lan'
+uci del firewall.cfg03dc81.network
+uci add_list firewall.cfg03dc81.network='wan'
+uci add_list firewall.cfg03dc81.network='wan6'
+uci add_list firewall.cfg03dc81.network='wwan'
+uci set network.wwan=interface
+uci set network.wwan.proto='dhcp'
+uci set wireless.wifinet2=wifi-iface
+uci set wireless.wifinet2.device='radio1'
+uci set wireless.wifinet2.mode='sta'
+uci set wireless.wifinet2.network='wwan'
+uci set wireless.wifinet2.ssid='WIFI_5G'
+uci set wireless.wifinet2.encryption='sae'
+uci set wireless.wifinet2.key='88886666'
+uci set wireless.radio1.cell_density='0'
+uci set wireless.wifinet2.ocv='0'
