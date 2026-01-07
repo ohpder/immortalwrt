@@ -518,6 +518,7 @@
 &tcsr {
 	compatible = "qcom,tcsr-ipq8064", "qcom,tcsr", "syscon";
 	qcom,usb-ctrl-select = <TCSR_USB_SELECT_USB3_DUAL>;
+	status = "okay";
 };
 
 &hs_phy_0 {
