@@ -241,14 +241,14 @@
 
 &usb3_0 {
 	status = "okay";
-	phys = <&usb_phy0>;
-	phy-names = "usb2-phy";
+	phys = <&hs_phy_0>, <&ss_phy_0>;
+	phy-names = "usb2-phy", "usb3-phy";
 };
 
 &usb3_1 {
 	status = "okay";
-	phys = <&usb_phy1>;
-	phy-names = "usb2-phy";
+	phys = <&hs_phy_1>, <&ss_phy_1>;
+	phy-names = "usb2-phy", "usb3-phy";
 };
 
 &pcie0 {
