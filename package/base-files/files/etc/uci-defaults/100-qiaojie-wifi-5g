@@ -1,25 +1,29 @@
-# 1. 创建网络接口
-uci set network.wwan=interface
-uci set network.wwan.proto='dhcp'
-
-# 2. 配置无线参数
+uci del firewall.cfg02dc81.network
+uci add_list firewall.cfg02dc81.network='lan'
+uci del firewall.cfg03dc81.network
+uci add_list firewall.cfg03dc81.network='wan'
+uci add_list firewall.cfg03dc81.network='wan6'
+uci add_list firewall.cfg03dc81.network='wwan
+'
+uci add_list firewall.cfg03dc81.network='WIFI_CLIENT'
+uci del firewall.docker.network
+uci add_list firewall.docker.network='docker'
+# /etc/config/network
+uci set network.WIFI_CLIENT=interface
+uci set network.WIFI_CLIENT.proto='dhcp'
+# /etc/config/wireless
 uci set wireless.wifinet2=wifi-iface
 uci set wireless.wifinet2.device='radio1'
 uci set wireless.wifinet2.mode='sta'
-uci set wireless.wifinet2.network='wwan'
+uci set wireless.wifinet2.network='WIFI_CLIENT'
 uci set wireless.wifinet2.ssid='WIFI_5G'
 uci set wireless.wifinet2.encryption='sae'
 uci set wireless.wifinet2.key='88886666'
-# 针对某些驱动的兼容性设置
 uci set wireless.radio1.cell_density='0'
 uci set wireless.wifinet2.ocv='0'
-# 将 wwan 接口加入到包含 wan 的防火墙区域中
-# 假设第一个 zone 是 lan (index 0), 第二个是 wan (index 1)
-uci add_list firewall.@zone[1].network='wwan'
 
-# 如果你不确定索引，可以使用更安全的方法（找到 name 为 wan 的 zone）
-# 这里我们直接增加允许 WAN 访问本地的规则
-uci add firewall rule
-uci set firewall.@rule[-1].name='ALLOW_LOCAL_ACCESS'
+
+uci add firewall rule # =cfg0f92bd
 uci set firewall.@rule[-1].src='wan'
+uci set firewall.@rule[-1].name='ALLOW_ACCESS_LOCAL'
 uci set firewall.@rule[-1].target='ACCEPT'
