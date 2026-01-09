@@ -261,16 +261,16 @@
 	phys = <&hs_phy_0>, <&ss_phy_0>;
 	phy-names = "usb2-phy", "usb3-phy";
 	/* 强制指定双模模式 */
-	snps,dis_u3_susphy_quirk;
-	snps,dis_u2_susphy_quirk;
+//	snps,dis_u3_susphy_quirk;
+//	snps,dis_u2_susphy_quirk;
 };
 
 &usb3_1 {
 	status = "okay";
 	phys = <&hs_phy_1>, <&ss_phy_1>;
 	phy-names = "usb2-phy", "usb3-phy";
-	snps,dis_u3_susphy_quirk;
-	snps,dis_u2_susphy_quirk;
+//	snps,dis_u3_susphy_quirk;
+//	snps,dis_u2_susphy_quirk;
 };
 &pcie0 {
 	status = "okay";
